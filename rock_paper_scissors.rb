@@ -1,4 +1,4 @@
-VALID_CHOICES = %w(rock paper scissors)
+VALID_CHOICES = %w(rock paper scissors lizard spock)
 
 def prompt(message)
   puts "=> #{message}"
@@ -6,15 +6,21 @@ end
 
 def win?(first, second)
   (first == 'rock' && second == 'scissors')||
+  (first == 'rock' && second == 'lizard')||
+  (first == 'paper' && second == 'spock')||
+  (first == 'paper' && second == 'rock')||
+  (first == 'scissors' && second == 'lizard')||
+  (first == 'scissors' && second == 'paper')||
+  (first == 'spock' && second == 'rock')||
+  (first == 'spock' && second == 'scissors')||
+  (first == 'lizard' && second == 'spock')||
+  (first == 'lizard' && second == 'paper')
+end
 
 def print_results (user, computer)
-  if (user == 'rock' && computer == 'scissors') ||
-     (user == 'paper' && computer == 'rock') ||
-     (user == 'scissors' && computer == 'paper')
+  if win?(user, computer)
     prompt "You won!"
-  elsif (user == 'rock' && computer == 'paper') ||
-        (user == 'paper' && computer == 'scissors') ||
-        (user == 'scissors' && computer == 'rock')
+  elsif win?(computer, user)
     prompt "You lose!"
   else
     prompt "It's a tie!"
